@@ -5,7 +5,7 @@ import "./AuthForm.css";
 
 function AuthForm() {
   const [searchParams] = useSearchParams();
-  const isLogin = searchParams.get("'mode");
+  const isLogin = searchParams.get("mode") === "login";
   return (
     <div>
       <Form className="login-box">
@@ -17,12 +17,12 @@ function AuthForm() {
         <div className="user-box">
           <input required type="password" placeholder="password" />
         </div>
-
-        <Link to={`?mode=${isLogin ? "signup" : "login"}`}>
-          {" "}
-          {isLogin ? "Create new user" : "Login"}
-        </Link>
-        <button> Save</button>
+        <div className="actions">
+          <Link to={`?mode=${isLogin ? "signup" : "login"}`}>
+            {isLogin ? "Create new user" : "Login"}
+          </Link>
+          <button>Save</button>
+        </div>
       </Form>
     </div>
   );
